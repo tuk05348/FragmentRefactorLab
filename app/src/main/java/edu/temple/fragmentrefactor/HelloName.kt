@@ -12,7 +12,6 @@ import android.widget.TextView
 class HelloName : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -22,23 +21,15 @@ class HelloName : Fragment() {
         // Inflate the layout for this fragment
 
         return inflater.inflate(R.layout.fragment_hello_name, container, false).apply {
-            val displayTextView = findViewById<TextView>(R.id.displayTextView)
-            val nameEditText = findViewById<EditText>(R.id.nameEditText)
-            val changeButton = findViewById<Button>(R.id.changeButton)
+            findViewById<Button>(R.id.changeButton).setOnClickListener {
+                val name = findViewById<EditText>(R.id.nameEditText).text
 
-            changeButton.setOnClickListener {
-                val name = nameEditText.text
-
-                displayTextView.text = if (name.isNotBlank()) {
+                findViewById<TextView>(R.id.displayTextView).text = if (name.isNotBlank()) {
                     "Hello, $name!"
                 } else {
                     "Please enter your name"
                 }
             }
         }
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
     }
 }
